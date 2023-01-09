@@ -23,15 +23,15 @@ export default defineUserConfig({
         children: [
           {
             text: '前端开发规范',
-            link: '',
+            link: '/standard/dev.html',
           },
           {
             text: '前端代码格式化规范',
-            link: '',
+            link: '/standard/format.html',
           },
           {
-            text: '项目结构',
-            link: '',
+            text: '前端技术及结构手册',
+            link: '/standard/structure.html',
           },
         ],
       },
@@ -42,15 +42,35 @@ export default defineUserConfig({
       '/v3': [
         {
           text: '前言',
+          collapsible: true,
           link: '/v3/preface.html',
         },
         {
           text: '前置知识',
+          collapsible: true,
           link: '',
         },
         {
           text: '响应式系统',
+          collapsible: true,
           link: '',
+        },
+      ],
+      '/standard': [
+        {
+          text: '前端开发规范',
+          collapsible: true,
+          link: '/standard/dev.html',
+        },
+        {
+          text: '前端代码格式化规范',
+          collapsible: true,
+          link: '/standard/format.html',
+        },
+        {
+          text: '前端技术及结构手册',
+          collapsible: true,
+          link: '/standard/structure.html',
         },
       ],
     },
