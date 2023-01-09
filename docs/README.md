@@ -1,7 +1,7 @@
 ---
 home: true
 title: Home
-heroImage: img/home.png
+heroImage: http://121.4.254.177/vue3.png
 heroText: Vue3 Study Book
 tagline: 下一代web开发方式，更快，更轻，易维护，更多的原生支持
 actions:

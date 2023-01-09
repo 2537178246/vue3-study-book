@@ -1,4 +1,4 @@
-import { defineUserConfig, defaultTheme } from 'vuepress'
+import { defineUserConfig, defaultTheme, viteBundler } from 'vuepress'
 
 export default defineUserConfig({
   // default lang
@@ -42,11 +42,25 @@ export default defineUserConfig({
       '/v3': [
         {
           text: '前言',
-          collapsible: true,
           link: '/v3/preface.html',
+        },
+        {
+          text: '前置知识',
+          link: '',
+        },
+        {
+          text: '响应式系统',
+          link: '',
         },
       ],
     },
     repo: 'https://github.com/2537178246/vue3-study-book.git',
+  }),
+  bundler: viteBundler({
+    viteOptions: {
+      build: {
+        assetsDir: './',
+      },
+    },
   }),
 })
