@@ -4,7 +4,7 @@ export default defineUserConfig({
   // default lang
   lang: 'zh-CN',
   // default value
-  base: '/',
+  base: '/vue3StudyBook/',
   title: 'Vue3 Study Book',
   description: 'Vue3 下一代web开发方式，更快，更轻，易维护，更多的原生支持',
   theme: defaultTheme({
@@ -57,10 +57,6 @@ export default defineUserConfig({
     repo: 'https://github.com/2537178246/vue3-study-book.git',
   }),
   bundler: viteBundler({
-    viteOptions: {
-      build: {
-        assetsDir: './',
-      },
-    },
+    viteOptions: {},
   }),
 })
