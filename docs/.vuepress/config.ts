@@ -1,0 +1,1 @@
+import { defineUserConfig } from 'vuepress'
