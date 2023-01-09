@@ -60,7 +60,6 @@ https://element-plus.gitee.io/zh-CN/component/button.html
    从 [GIT](https://hxgit.hxgis.com/front/vue3-template.git) 上 `fork` (派生) 个新项目到刚建的项目子群组里, 然后进行重命名. **(注意: `Project name` 和 `Path` 都要改.)**
    Project name:使用串式命名（第一个为项目地区 例如 hubei-live-traffic）
    Project description (optional): 系统名称
-   ![hxgis-spring-boot-1.png](/public/docs/img/hxgis-spring-boot/hxgis-spring-boot-1.png)
 
 
 4. npm install
