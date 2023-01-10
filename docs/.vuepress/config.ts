@@ -1,11 +1,16 @@
-import { defineUserConfig, defaultTheme, viteBundler } from 'vuepress'
+import { defaultTheme } from 'vuepress'
+import { registerComponentsPlugin } from '@vuepress/plugin-register-components'
+import { getDirname, path } from '@vuepress/utils'
 
-export default defineUserConfig({
+const __dirname = getDirname(import.meta.url)
+
+export default {
   // default lang
   lang: 'zh-CN',
   // default value
   base: '/vue3StudyBook/',
   title: 'Vue3 Study Book',
+  head: [],
   description: 'Vue3 下一代web开发方式，更快，更轻，易维护，更多的原生支持',
   theme: defaultTheme({
     // 头部
@@ -76,7 +81,9 @@ export default defineUserConfig({
     },
     repo: 'https://github.com/2537178246/vue3-study-book.git',
   }),
-  bundler: viteBundler({
-    viteOptions: {},
-  }),
-})
+  plugins: [
+    registerComponentsPlugin({
+      componentsDir: path.resolve(__dirname, './components'),
+    }),
+  ],
+}
