@@ -40,6 +40,23 @@ export default {
           },
         ],
       },
+      {
+        text: '工具🔧',
+        children: [
+          {
+            text: 'npm源',
+            link: '/util/npm.html',
+          },
+          {
+            text: '校验工具',
+            link: '/util/validate.html',
+          },
+          {
+            text: '地图工具',
+            link: '/util/map-utils.html',
+          },
+        ],
+      },
     ],
     // 侧边栏数组
     sidebar: {
@@ -76,6 +93,23 @@ export default {
           text: '前端技术及结构手册',
           collapsible: true,
           link: '/standard/structure.html',
+        },
+      ],
+      '/util': [
+        {
+          text: 'npm源',
+          collapsible: true,
+          link: '/util/npm.html',
+        },
+        {
+          text: '校验工具',
+          collapsible: true,
+          link: '/util/validate.html',
+        },
+        {
+          text: '地图工具',
+          collapsible: true,
+          link: '/util/map-utils.html',
         },
       ],
     },

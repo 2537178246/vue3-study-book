@@ -84,49 +84,7 @@ pnpm i
 
 ### 格式化配置
 
-#### Webstorm
-
-1、打开设置
-
-2、搜索eslint，勾选
-
-3、搜索prettier，勾选
-
-![img.png](./img/img8.png)
-![img.png](./img/img9.png)
-![img.png](./img/img10.png)
-
-#### Visual Studio Code
-
-**在vsc中开启Eslint**
-
-- 安装 `ESLint` 插件并启用
-
-- `setting.json`中进行如下设置
-
-```json
-{
-  "eslint.enable": true
-}
-```
-
-**在vsc中开启Prettier**
-
-::: warning 你必须安装 Prettier 插件
-在vscode中安装`Prettier`插件并启用，同时需要设置`Prettier`为对应的代码默认格式化，或者将其设置为指定语言的代码格式化。
-:::
-
-- `setting.json`中进行如下设置
-
-```json
-{
-  "editor.formatOnSave": true, // 开启保存文件自动格式化代码
-  "editor.defaultFormatter": "esbenp.prettier-vscode", // 默认的代码格式化工具
-  "prettier.requireConfig": true // 需要Prettier的配置文件
-}
-```
-
-[参考地址](https://juejin.cn/post/7156893291726782500)
+[前往学习如何配置格式化 ➡️](./format.md)
 
 ### README
 
@@ -242,31 +200,46 @@ Vue功能丰富的Hooks组件库
 ```
 --public
 --src
-	|--api
+  |--api
   |--assets
+    |--css
+    |--img
+    |--json
+    |--font
   |--components
   |--hooks
   |--i18n
   |--services
   |--store
   |--types
+  |--util
   |--view
   App.vue
+  auto-imports.d.ts
+  components.d.ts
   config.json
   env.d.ts
+  index.css
   main.ts
   permission.ts
   router.ts
+.editorconfig
 .env.development
 .env.production
 .eslintignore
 .eslintrc.js
 .gitignore
+.prettierignore
+.prettierrc
 env.d.ts
+image.d.ts
 index.html
 package.json
+postcss.config.js
 README.md
+tailwind.config.js
 tsconfig.json
+tsconfig.node.json
 vite.config.ts
 ```
 
@@ -274,41 +247,40 @@ vite.config.ts
 
 ### public文件夹
 
-静态资源文件，存放的文件不会经过vite处理，存放geojson或者第三方js插件
+> 静态资源文件，存放的文件不会经过vite处理，存放geojson或者第三方js插件
 
 ### src文件夹
 
-#### api 接口管理文件夹
+> api 接口管理文件夹
 
 1. 文件命名按照view模块命名，层级最多不超过2层，
-1. 定义的接口函数（默认后端接口名称保持一致），如果接口名称不规范，前缀加模块名称
-1. 参数type定义类型
-1. 接口注释（默认与接口文档一致）
+2. 定义的接口函数（默认后端接口名称保持一致），如果接口名称不规范，前缀加模块名称
+3. 参数type定义类型
+4. 接口注释（默认与接口文档一致）
 
-```typescript
+```ts
 /**
  * 获取城市地址
  * @param params
  */
 export const getOnceArea = (params: {
-    cityCode: string,
-    dataType: string,
-    dataName: string,
-  }) => tRequest.get({
-    url: '/api/monitor/dataflow/getOnceArea',
-    params
-  })
+    cityCode: string
+    dataType: string
+    dataName: string
+  }) =>
+    tRequest.get({
+      url: '/api/monitor/dataflow/getOnceArea',
+      params,
+    })
 
 /**
  * 上传单张图片为ppt内容
  * @param data
  */
-export const uploadImage = (data: {
-  file: File
-}) => {
-  tRequest.post({
+export const uploadImage = (data: { file: File }) => {
+  return tRequest.post({
     url: '/ppt/pptModelConfigs/uploadImage',
-    data
+    data,
   })
 }
 ```
@@ -319,20 +291,23 @@ showLoading 全屏加载动画，默认为true
 useCompress 压缩响应数据
 useCompressWithCache 压缩并缓存响应数据
 
-#### assets
+### assets文件夹
 
-静态资源
+> 静态资源
 
 1. 文件夹css、img、json、font等
-1. img与json 存放位置按照view目录结构一一对应存放
-1. 公共资源如预警图片单独在img根目录创建文件夹存放
+2. img与json 存放位置按照view目录结构一一对应存放
+3. 公共资源如预警图片单独在img根目录创建文件夹存放
 
-#### components
+### components
+
+> 组件库
 
 1.一个组件一个文件夹
+
 2.组件需要的静态资源存放到文件夹下（例如img）
 
-#### hooks
+### hooks
 
 > Hooks -> 钩子
 
@@ -341,9 +316,9 @@ useCompressWithCache 压缩并缓存响应数据
 - Hooks 函数以use开头（类似vue2 mixin $_XX_XX）小驼峰式命名：useFileHome
 - 复用 **高内聚低耦合** 可塑性高
 
-例一
+> 例一
 
-```typescript
+```ts
 import config from '../../config.json'
 
 export const useStorage = new class {
@@ -385,7 +360,7 @@ useStorage.setItem('userinfo', data)
 useStorage.clearAll()
 ```
 
-例二
+> 例二
 
 ```typescript
 import {computed, getCurrentInstance} from 'vue'
@@ -412,10 +387,12 @@ const button = useProp<string>('button')
 
 更多工具hooks请访问 --> [VueUse](https://vueuse.org/)
 
-#### types ts类型定义
+### types目录
+
+> ts类型定义
 
 文件名称与view目录一致，目录结构不超过两层，按照路由目录创建
-最终统一在index.ts中暴露
+
 在其他项目中 import引入使用
 
 typescript的目的是提升代码质量，提升可维护性
@@ -427,14 +404,15 @@ export interface LoginType {
 }
 ```
 
-> 注意
+::: danger 注意
+:::
 
 vue3 prop 暂不支持 外部引入type
 
-错误示例
+> 错误示例
 
-```typescript
-import {LoginType} from 'types'
+```ts
+import type LoginType from '#/config'
 
 const props = withDefaults(defineProps<LoginType>(), {
   username: '章三',
@@ -453,7 +431,7 @@ const props = defineProps<LoginType>({
  **/
 ```
 
-正确示例
+> 正确示例
 
 ```typescript
 interface LoginType {
@@ -482,14 +460,23 @@ const props = withDefaults(defineProps<{
 
 学习如何使用TypeScript? --> [TypeScript](https://www.tslang.cn/)
 
-#### store
+### store目录
 
-使用pinia插件 https://pinia.web3doc.top/
+> 原VueX 现使用Pinia
+
 目录结构按照view目录创建
 
-#### i18n 国际化
+[知识点学习]()
 
-->数据字典定义
+[前往官网](https://pinia.web3doc.top/)
+
+
+### i18n目录
+
+> 国际化
+
+>> 数据字典定义
+
 数据字典按照页面模块划分（例如home\monitor2个模块）
 
 ```typescript
@@ -510,50 +497,47 @@ export default {
 }
 ```
 
-->使用
+**使用**
 
 ```typescript
-import {useI18n} from 'vue-i18n'// 要在js中使用国际化
-const {t} = useI18n()
+import { useI18n } from 'vue-i18n'// 要在js中使用国际化
+const { t } = useI18n()
 t('home.name')
 ```
 
-->中英文切换
+**中英文切换**
 
 ```typescript
-import i18n from
+import i18n from '@/i18n'
 
-’@/i18n‘
 i18n.locale = 'zhCn' //中文
 i18n.locale = 'en' //英文
 ```
 
-#### view 用于存放所有的页面
+### view目录
+
+> 用于存放所有的页面
 
 1. 文件夹命名规范 串式命名 monitor-radar
-1. 文件夹下index.vue以及子模块
-1. index.vue dom模板创建
+2. 文件夹下index.vue以及子模块
+3. index.vue dom模板创建
 
-```typescript
+```vue
 <template>
+</template>
 
-  </template>
-
-< script
-lang = "ts"
-setup >
+<script lang="ts" setup >
 
 </script>
 
-< style
-scoped
-lang = "less" >
+<style scoped lang="less" >
 
-  </style>
+</style>
+```
 
-####
-router.ts
-页面路由
+### router.ts
+
+> 页面路由
 
   ```typescript
 export const routeList: Array<RouteRecordRaw> = [
@@ -586,7 +570,6 @@ export const routeList: Array<RouteRecordRaw> = [
     ]
   },]
 ```
-
 ### .env.development与.env.production
 
 开发环境与生产环境
@@ -611,42 +594,25 @@ VITE_APP_MAP_IP = '10.104.192.14'
 import.meta.env.VITE_APP_MAP_IP 
 ```
 
+::: danger 注意
+使用必须以 **VITE** 开头
+:::
+
 ### vite.config.js
 
-1. server.proxy 配置代理
+> 目前版本 <Badge type="tip" text="V2" vertical="middle" />
 
-```typescript
-//代理
-'/data'
-:
-{
-  target: 'http://10.104.235.42:9990',
-    changeOrigin
-:
-  true,
-    ws
-:
-  true
-}
-  ```
+> [前往官网](https://v2.vitejs.dev/)
 
-1. base 开发或生产环境服务的公共基础路径
-
-```typescript
-//文件中添加配置
-base: '/hbweb/typhoon/'
-//打包后的文件
-< link
-rel = "stylesheet"
-href = "/hbweb/typhoon/assets/index.7676276e.css" >
-  ```
+> [前往学习](https://v2.vitejs.dev/)
 
 ## 相关链接
 
-源配置：http://wiki.hxgis.com/zh/public/docs/hxlc-ui/new-page
-前端开发规范：http://wiki.hxgis.com/zh/public/docs/web-development-guide
-组件通信：https://juejin.cn/post/7161718828970278949
-pinia中文文档：https://pinia.web3doc.top/
-vue3中文文档：https://cn.vuejs.org/
-vue3生命周期：http://wiki.hxgis.com/zh/public/docs/new-page
+[前往源配置](../util/npm.md)
+
+[前端开发规范](./dev.md)
+
+[组件通信](https://juejin.cn/post/7161718828970278949)
+
+[Vue3知识点](../v3/preface.md)
 
