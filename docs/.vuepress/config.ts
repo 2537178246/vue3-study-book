@@ -13,6 +13,7 @@ export default {
   head: [],
   description: 'Vue3 下一代web开发方式，更快，更轻，易维护，更多的原生支持',
   theme: defaultTheme({
+    logo: 'https://hxgit.hxgis.com/uploads/-/system/appearance/header_logo/1/logo.png',
     // 头部
     navbar: [
       {
@@ -24,8 +25,12 @@ export default {
         link: '/v3/preface.html',
       },
       {
-        text: '代码规范',
+        text: '入职必看',
         children: [
+          {
+            text: '入职流程',
+            link: '/standard/start.html',
+          },
           {
             text: '前端开发规范',
             link: '/standard/dev.html',
@@ -79,6 +84,11 @@ export default {
         },
       ],
       '/standard': [
+        {
+          text: '入职流程',
+          collapsible: true,
+          link: '/standard/start.html',
+        },
         {
           text: '前端开发规范',
           collapsible: true,
