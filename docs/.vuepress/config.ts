@@ -75,12 +75,17 @@ export default {
         {
           text: '前置知识',
           collapsible: true,
-          link: '',
+          link: '/v3/front.html',
+        },
+        {
+          text: '全局概括',
+          collapsible: true,
+          link: '/v3/system.html',
         },
         {
           text: '响应式系统',
           collapsible: true,
-          link: '',
+          link: '/v3/responsive.html',
         },
       ],
       '/standard': [
