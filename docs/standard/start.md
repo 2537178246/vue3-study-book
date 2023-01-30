@@ -80,10 +80,14 @@ npm -v
 统一使用开发工具为 `WebStorm` [前往下载](https://www.jetbrains.com.cn/webstorm/promo/?utm_source=sogou&utm_medium=cpc&utm_campaign=cn-sogou-br-webstorm-ex-pc&utm_content=webstorm-pure&utm_term=webstorm)
 
 ::: warning 注意
-2021.3.2版本及以下 可以通过reset插件无限续用
+2021.3.2版本及以下 可以通过`reset`插件无限续用
 
 \>2021.3.2版本 只能通过`账号购买` 或者 `激活码` 激活使用
 :::
+
+> proxifier
+
+[前往下载](http://wiki.hxgis.com/public/docs/nps)
 
 ## 阅读开发规范
 

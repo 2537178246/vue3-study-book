@@ -53,6 +53,10 @@ export default {
             link: '/util/npm.html',
           },
           {
+            text: 'nvm',
+            link: '/util/nvm.html',
+          },
+          {
             text: '校验工具',
             link: '/util/validate.html',
           },
@@ -115,6 +119,11 @@ export default {
           text: 'npm源',
           collapsible: true,
           link: '/util/npm.html',
+        },
+        {
+          text: 'nvm',
+          collapsible: true,
+          link: '/util/nvm.html',
         },
         {
           text: '校验工具',
